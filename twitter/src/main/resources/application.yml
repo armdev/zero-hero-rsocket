@@ -31,9 +31,9 @@ spring:
       uri: mongodb://BingoBongo:Abcdf@mongonode:27017/twitterDB?authSource=admin
 
 
-twitter.user: user
-twitter.pass: usver
-twitter.accesstoken: 91971230-8Ty6L78ijg8S54KZLm5SeYFDkbLJcwAIvB4hfWGsc
-twitter.accesstokensecret: XVHetaxjg8snLpoRr4ycgYfUwBSz2F2HKZR34CI3b0TFn
-twitter.consumersecret: oRcYOGoJclJYPLW9XkLjKEe5otpwSXQJqlNEuvxlg
-twitter.consumerkey: JNufxx4RQtG0QxYLnYZA
+twitter.user: username
+twitter.pass: password
+twitter.accesstoken: 91971230-Cs8v0efhZWeo4KIE1yAHtZjSYLP3oyY6wckb8Z3py
+twitter.accesstokensecret: DNoTk3RiorfA2yT4MIMDNiAAoWiiM9kQqHDBdL7rxXvpi
+twitter.consumersecret: CCnXUh1vQPH8yzppKurdtMTjTR7RciN1SNX75Xj0D8vTNTTQCZ
+twitter.consumerkey: B62DBJaw2ZpL65QUBAYNBcX1p

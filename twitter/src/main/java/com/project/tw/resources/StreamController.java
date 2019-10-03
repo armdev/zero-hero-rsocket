@@ -1,6 +1,6 @@
 package com.project.tw.resources;
 
-import com.project.tw.domain.TweeterUser;
+import com.project.tw.domain.StatusModel;
 import com.project.tw.services.DataService;
 import java.time.Duration;
 import lombok.extern.slf4j.Slf4j;
@@ -24,10 +24,11 @@ public class StreamController {
     @Autowired
     private DataService dataService;
 
+
     @CrossOrigin
     @GetMapping(path = "/data", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<?> stream() {
-        final Flux<TweeterUser> dataStream = dataService.fetchStream()
+        final Flux<StatusModel> dataStream = dataService.fetchStream()
                 .onBackpressureDrop()
                 .limitRate(10)
                 .limitRequest(1000)

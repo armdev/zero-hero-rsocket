@@ -15,4 +15,6 @@ echo "Start the config service first and wait for it to become available"
 sudo docker-compose up -d --build 
 
 echo  "Attach to the log output of the cluster"
-sudo docker-compose logs
+#sudo docker-compose logs
+sudo docker logs --follow twitter
+

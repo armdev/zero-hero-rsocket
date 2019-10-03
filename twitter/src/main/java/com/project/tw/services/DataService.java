@@ -5,13 +5,16 @@
  */
 package com.project.tw.services;
 
-import com.project.tw.domain.TweeterUser;
-import com.project.tw.repositories.TwitterUserRepository;
+import com.project.tw.domain.StatusModel;
+import com.project.tw.repositories.DataStreamRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import com.project.tw.repositories.StatusStreamRepository;
+import org.springframework.scheduling.annotation.Async;
+import reactor.core.publisher.Mono;
 
 /**
  *
@@ -21,12 +24,19 @@ import reactor.core.publisher.Flux;
 @Slf4j
 @Lazy
 public class DataService {
-    
+
     @Autowired
-    private TwitterUserRepository twitterUserRepository;
-    
-    public Flux<TweeterUser> fetchStream(){
-        return twitterUserRepository.findTop50ByOrderByTimestampDesc();
+    private StatusStreamRepository twitterUserRepository;
+    @Autowired
+    private DataStreamRepository dataStreamRepository;
+
+    public Flux<StatusModel> fetchStream() {
+        return twitterUserRepository.findAll();
     }
-    
+
+    @Async
+    public StatusModel saveIt(StatusModel model) {
+        return dataStreamRepository.save(model);
+    }
+
 }

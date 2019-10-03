@@ -1,12 +1,13 @@
 version: '3'
 services:
    
-  mongonode:      
+  mongonode:  
+    image: mongodb
     build: ./mongonode
     container_name: mongonode   
     volumes:
-      - /opt/fbmongo/data:/data/db
-      - /opt/fbmongo/logs:/data/logs
+      - /opt/mongobingo/data:/data/db
+      - /opt/mongobingo/logs:/data/logs
     ports:
       - 27017:27017
     restart: always
