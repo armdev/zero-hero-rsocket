@@ -1,0 +1,46 @@
+version: '3'
+services:
+   
+  mongonode:      
+    build: ./mongonode
+    container_name: mongonode   
+    volumes:
+      - /opt/fbmongo/data:/data/db
+      - /opt/fbmongo/logs:/data/logs
+    ports:
+      - 27017:27017
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_PASSWORD=Abcdf
+      - MONGO_INITDB_ROOT_USERNAME=BingoBongo
+    command: mongod
+    networks:
+      kafkanet:
+        aliases:
+          - mongonode
+
+  twitter:
+    image: twitter
+    build: ./twitter
+    container_name: twitter
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    links:
+      - mongonode       
+    depends_on:      
+      - mongonode       
+    ports:
+      - '2018:2018'
+    volumes:
+      - /opt/twitter/logs/:/opt/twitter/logs
+    networks:
+      - kafkanet
+
+
+networks:
+  kafkanet:
+    driver: bridge

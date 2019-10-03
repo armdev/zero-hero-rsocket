@@ -1,0 +1,39 @@
+management:
+  security:  
+   enabled: false      
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+  endpoints:
+    jmx:
+      exposure:
+       include: '*'
+    web:
+     exposure:
+      include: '*'
+      base-path: /actuator
+    cors:
+      allowed-origins: 'true'
+      enabled-by-default: 'false'
+    
+
+server:
+  port: 2018 
+ 
+
+spring:
+  application:
+    name: twitter   
+   
+  data:
+    mongodb:         
+      uri: mongodb://BingoBongo:Abcdf@mongonode:27017/twitterDB?authSource=admin
+
+
+twitter.user: user
+twitter.pass: usver
+twitter.accesstoken: 91971230-8Ty6L78ijg8S54KZLm5SeYFDkbLJcwAIvB4hfWGsc
+twitter.accesstokensecret: XVHetaxjg8snLpoRr4ycgYfUwBSz2F2HKZR34CI3b0TFn
+twitter.consumersecret: oRcYOGoJclJYPLW9XkLjKEe5otpwSXQJqlNEuvxlg
+twitter.consumerkey: JNufxx4RQtG0QxYLnYZA
