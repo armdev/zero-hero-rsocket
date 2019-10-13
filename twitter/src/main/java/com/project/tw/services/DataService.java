@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import com.project.tw.repositories.StatusStreamRepository;
 import org.springframework.scheduling.annotation.Async;
-import reactor.core.publisher.Mono;
 
 /**
  *
@@ -27,11 +26,12 @@ public class DataService {
 
     @Autowired
     private StatusStreamRepository twitterUserRepository;
+    
     @Autowired
     private DataStreamRepository dataStreamRepository;
 
     public Flux<StatusModel> fetchStream() {
-        return twitterUserRepository.findAll();
+        return twitterUserRepository.findTop50ByOrderByIdDesc();
     }
 
     @Async

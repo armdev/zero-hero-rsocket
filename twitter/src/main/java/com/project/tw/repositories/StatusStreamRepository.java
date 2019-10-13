@@ -5,12 +5,13 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.Flux;
 
 @Component
 @Repository
 @Transactional
 public interface StatusStreamRepository extends ReactiveMongoRepository<StatusModel, String> {
-    
-    //Flux<StatusModel> findTop50ByOrderByTimestampDesc();
-    
+
+    Flux<StatusModel> findTop50ByOrderByIdDesc();
+
 }

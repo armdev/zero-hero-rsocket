@@ -16,7 +16,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=BingoBongo
     command: mongod
     networks:
-      kafkanet:
+      socketnet:
         aliases:
           - mongonode
 
@@ -31,7 +31,8 @@ services:
         max_attempts: 3
         window: 120s
     links:
-      - mongonode       
+      - mongonode 
+      
     depends_on:      
       - mongonode       
     ports:
@@ -39,9 +40,54 @@ services:
     volumes:
       - /opt/twitter/logs/:/opt/twitter/logs
     networks:
-      - kafkanet
-
-
+      - socketnet
+      
+      
+  producer:
+    image: producer
+    build: ./producer
+    container_name: producer
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    links:
+      - mongonode
+      - twitter
+      - consumer
+    depends_on:      
+      - mongonode       
+    ports:
+      - '9090:9090'
+    volumes:
+      - /opt/producer/logs/:/opt/producer/logs
+    networks:
+      - socketnet
+      
+  consumer:
+    image: consumer
+    build: ./consumer
+    container_name: consumer
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    links:
+      - mongonode    
+    
+    depends_on:      
+      - mongonode       
+    ports:
+      - '9091:9091'
+    volumes:
+      - /opt/consumer/logs/:/opt/consumer/logs
+    networks:
+      - socketnet
+      
 networks:
-  kafkanet:
+  socketnet:
     driver: bridge

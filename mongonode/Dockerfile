@@ -1,5 +1,5 @@
 FROM mongo:4
-MAINTAINER Garegin Ayvazyan, garegin.ayvazyan@optym.com
+MAINTAINER Armen
 
 # Add mongo user
 RUN groupadd -r mongo && \

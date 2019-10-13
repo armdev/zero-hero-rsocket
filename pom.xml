@@ -6,6 +6,7 @@
     <version>1.0</version>
     <packaging>pom</packaging>
     <modules>
+        <module>appcore</module>
         <module>producer</module>
         <module>consumer</module>
         <module>twitter</module>      

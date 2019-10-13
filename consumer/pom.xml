@@ -72,6 +72,11 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+	 <dependency>
+	  <groupId>${project.groupId}</groupId>
+	  <artifactId>appcore</artifactId>
+	  <version>${project.version}</version>
+	 </dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -87,6 +92,7 @@
 	</dependencyManagement>
 
 	<build>
+            <finalName>consumer</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
