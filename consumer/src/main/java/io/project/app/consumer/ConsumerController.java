@@ -29,6 +29,7 @@ public class ConsumerController {
                 .limitRate(1)
                 .limitRequest(10)
                 .delayElements(Duration.ofSeconds(1)).repeat();
+        
         return dataStream;
     }
 
