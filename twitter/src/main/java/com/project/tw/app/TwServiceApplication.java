@@ -27,8 +27,6 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class TwServiceApplication {
 
-  
-
     public static void main(String[] args) {
         final SpringApplication application = new SpringApplication(TwServiceApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
@@ -38,7 +36,7 @@ public class TwServiceApplication {
 
     @EventListener(ApplicationReadyEvent.class)
     public void doSomethingAfterStartup() {
-       
+
     }
 
     @Bean
