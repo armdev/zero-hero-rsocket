@@ -14,5 +14,7 @@ public class ConsumerApplication {
         application.setWebApplicationType(WebApplicationType.REACTIVE);
         application.run(args);
     }
+    
+
 
 }
