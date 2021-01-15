@@ -15,7 +15,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=BingoBongo
     command: mongod
     networks:
-      kafkanet:
+      dnet:
         aliases:
           - mongonode
 
@@ -39,7 +39,7 @@ services:
     volumes:
       - /opt/twitter/logs/:/opt/twitter/logs
     networks:
-      - kafkanet
+      - dnet
       
       
   producer:
@@ -63,7 +63,7 @@ services:
     volumes:
       - /opt/producer/logs/:/opt/producer/logs
     networks:
-      - kafkanet
+      - dnet
       
   consumer:
     image: consumer
@@ -85,14 +85,11 @@ services:
     volumes:
       - /opt/consumer/logs/:/opt/consumer/logs
     networks:
-      - kafkanet
+      - dnet
 
 networks:
-  kafkanet:
-    driver: bridge   
-    ipam:
-      driver: default
-   
+  dnet:
+    driver: overlay
 
 
 
