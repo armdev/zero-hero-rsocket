@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 services:
    
   mongonode:  
@@ -16,7 +16,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=BingoBongo
     command: mongod
     networks:
-      socketnet:
+      jnet:
         aliases:
           - mongonode
 
@@ -40,7 +40,7 @@ services:
     volumes:
       - /opt/twitter/logs/:/opt/twitter/logs
     networks:
-      - socketnet
+      - jnet
       
       
   producer:
@@ -64,7 +64,7 @@ services:
     volumes:
       - /opt/producer/logs/:/opt/producer/logs
     networks:
-      - socketnet
+      - jnet
       
   consumer:
     image: consumer
@@ -86,8 +86,10 @@ services:
     volumes:
       - /opt/consumer/logs/:/opt/consumer/logs
     networks:
-      - socketnet
-      
+      - jnet
+
 networks:
-  socketnet:
-    driver: bridge
+  jnet:
+    driver: bridge   
+    ipam:
+      driver: default
