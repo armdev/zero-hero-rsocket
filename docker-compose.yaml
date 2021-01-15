@@ -1,6 +1,5 @@
 version: '3.2'
-services:
-   
+services:   
   mongonode:  
     image: mongodb
     build: ./mongonode
@@ -90,6 +89,9 @@ services:
 
 networks:
   jnet:
-    driver: bridge   
-    ipam:
-      driver: default
+    driver: bridge
+   
+
+
+
+
